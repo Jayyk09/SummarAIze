@@ -1,5 +1,5 @@
 import { ChatHistory } from '../interface/chatHistory'
-import { clearChatHistory, getChatHistory, saveChatHistory } from '../lib/indexedDB'
+import { clearChatHistory, getChatHistory, saveChatHistory } from '../lib/indexedDB.ts'
 
 export const useIndexDB = () => {
   return {
