@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import {
   Box,
   Button,
@@ -81,10 +81,10 @@ const Popup: React.FC = () => {
       {isLoaded ? (
         <Box>
           <Typography variant="h4" align="center" gutterBottom>
-            LeetCode Whisper
+            SummerAIze
           </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary">
-            Your companion to beat LeetCode!
+            Your personal web ai!
           </Typography>
 
           <motion.form
