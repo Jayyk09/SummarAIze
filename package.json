@@ -14,6 +14,7 @@
     "@crxjs/vite-plugin": "^2.0.0-beta.30",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.0",
     "ai": "^4.1.0",
     "idb": "^8.0.1",

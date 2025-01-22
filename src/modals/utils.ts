@@ -14,9 +14,7 @@ import { generateObject, GenerateObjectResult, LanguageModelV1 } from 'ai'
  * @returns {Promise<GenerateObjectResult>} A promise that resolves with the generated object response.
  */
 export const generateObjectResponce = async ({
-  messages,
   systemPrompt,
-  prompt,
   extractedCode,
   model,
 }: {
@@ -42,9 +40,7 @@ export const generateObjectResponce = async ({
       {
         role: 'system',
         content: `extractedCode (this code is writen by user): ${extractedCode}`,
-      },
-      ...messages,
-      { role: 'user', content: prompt },
+      } 
     ],
   })
 
