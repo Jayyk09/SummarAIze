@@ -15,6 +15,9 @@ import {
 import MuiAlert from '@mui/material/Alert';
 import { useChromeStorage } from './hooks/useChromeStorage';
 import { ValidModel, VALID_MODELS } from './constant/valid_models';
+import { useNavigate } from 'react-router-dom';
+// import ChatBox from './content/content';
+
 
 const Popup: React.FC = () => {
   const [apikey, setApikey] = useState<string | null>(null);
@@ -25,6 +28,8 @@ const Popup: React.FC = () => {
     state: 'error' | 'success';
     message: string;
   } | null>(null);
+
+  const navigate = useNavigate(); // Hook to handle navigation
 
   // Load Chrome Storage Data
   useEffect(() => {
@@ -64,6 +69,12 @@ const Popup: React.FC = () => {
         await setKeyModel(apikey, model);
       }
       setSubmitMessage({ state: 'success', message: 'API Key saved successfully!' });
+
+      // Redirect to the content page after saving
+      setTimeout(() => {
+        navigate('/content/content'); // This will take the user to /content page
+      }, 1500); // Wait for a short delay before navigating
+      
     } catch (error: any) {
       setSubmitMessage({ state: 'error', message: error.message });
     } finally {

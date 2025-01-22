@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, KeyboardEvent } from "react";
+import React, { useState, KeyboardEvent } from "react";
 import {
   Box,
   TextField,
@@ -11,26 +11,26 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
+interface Message {
+  text: string;
+}
+
 const ChatBox: React.FC = () => {
-  const [messages, setMessages] = useState<string[]>([]); // Stores chat messages
+  const [messages, setMessages] = useState<Message[]>([]); // Stores chat messages
   const [input, setInput] = useState<string>(""); // Stores the current input text
 
-  const handleSend = (): void => {
+  const handleSend = () => {
     if (input.trim() !== "") {
-      setMessages((prevMessages) => [...prevMessages, input]);
+      setMessages((prevMessages) => [...prevMessages, { text: input }]);
       setInput("");
     }
   };
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>): void => {
+  const handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       handleSend();
     }
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setInput(event.target.value);
   };
 
   return (
@@ -42,7 +42,7 @@ const ChatBox: React.FC = () => {
       <List sx={{ maxHeight: 300, overflowY: "auto", mb: 2 }}>
         {messages.map((message, index) => (
           <ListItem key={index} disableGutters>
-            <ListItemText primary={message} />
+            <ListItemText primary={message.text} />
           </ListItem>
         ))}
       </List>
@@ -54,8 +54,8 @@ const ChatBox: React.FC = () => {
           multiline
           maxRows={4}
           value={input}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyPress}
           placeholder="Type your message..."
         />
         <IconButton
