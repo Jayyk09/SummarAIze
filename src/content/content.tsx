@@ -38,7 +38,7 @@ const ChatBox: React.FC = () => {
       elevation={3}
       sx={{
         width: '500px', // Fixed width
-        height: '600px', // Fixed height
+        height: '500px', // Fixed height
         mx: 'auto', // Center horizontally
         my: 4, // Vertical margin
         p: 3, // Internal padding
@@ -47,9 +47,16 @@ const ChatBox: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'space-between', // Push content apart
         boxShadow: 3,
+        bgcolor: 'background.default', // Background color from theme
+        color: 'text.primary', // Text color from theme
       }}
     >
-      <Typography variant="h6" gutterBottom align="center">
+      <Typography
+        variant="h6"
+        gutterBottom
+        align="center"
+        sx={{ color: 'text.primary' }} // Use theme's text color
+      >
         Chat Box
       </Typography>
 
@@ -59,11 +66,13 @@ const ChatBox: React.FC = () => {
           overflowY: 'auto',
           mb: 2,
           maxHeight: '450px', // Scrollable list area
+          bgcolor: 'background.paper', // List background color
+          borderRadius: 1,
         }}
       >
         {messages.map((message, index) => (
           <ListItem key={index} disableGutters>
-            <ListItemText primary={message.text} />
+            <ListItemText primary={message.text} sx={{ color: 'text.primary' }} />
           </ListItem>
         ))}
       </List>
@@ -80,6 +89,20 @@ const ChatBox: React.FC = () => {
           placeholder="Type your message..."
           sx={{
             flexGrow: 1,
+            bgcolor: 'background.paper', // Input field background
+            borderRadius: 1,
+            '& .MuiOutlinedInput-root': {
+              color: 'text.primary', // Text color
+              '& fieldset': {
+                borderColor: 'divider', // Border color from theme
+              },
+              '&:hover fieldset': {
+                borderColor: 'text.secondary', // Hover border color
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'primary.main', // Focus border color
+              },
+            },
           }}
         />
         <IconButton
