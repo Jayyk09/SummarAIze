@@ -16,8 +16,6 @@ import MuiAlert from '@mui/material/Alert';
 import { useChromeStorage } from './hooks/useChromeStorage';
 import { ValidModel, VALID_MODELS } from './constant/valid_models';
 import { useNavigate } from 'react-router-dom';
-// import ChatBox from './content/content';
-
 
 const Popup: React.FC = () => {
   const [apikey, setApikey] = useState<string | null>(null);

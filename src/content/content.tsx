@@ -34,12 +34,33 @@ const ChatBox: React.FC = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 2, maxWidth: 600, mx: "auto", my: 4 }}>
-      <Typography variant="h6" gutterBottom>
+    <Paper
+      elevation={3}
+      sx={{
+        width: '500px', // Fixed width
+        height: '600px', // Fixed height
+        mx: 'auto', // Center horizontally
+        my: 4, // Vertical margin
+        p: 3, // Internal padding
+        borderRadius: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between', // Push content apart
+        boxShadow: 3,
+      }}
+    >
+      <Typography variant="h6" gutterBottom align="center">
         Chat Box
       </Typography>
 
-      <List sx={{ maxHeight: 300, overflowY: "auto", mb: 2 }}>
+      <List
+        sx={{
+          flex: 1, // Takes up available vertical space
+          overflowY: 'auto',
+          mb: 2,
+          maxHeight: '450px', // Scrollable list area
+        }}
+      >
         {messages.map((message, index) => (
           <ListItem key={index} disableGutters>
             <ListItemText primary={message.text} />
@@ -47,7 +68,7 @@ const ChatBox: React.FC = () => {
         ))}
       </List>
 
-      <Box display="flex" alignItems="center">
+      <Box display="flex" alignItems="center" gap={2}>
         <TextField
           fullWidth
           variant="outlined"
@@ -57,11 +78,18 @@ const ChatBox: React.FC = () => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyPress}
           placeholder="Type your message..."
+          sx={{
+            flexGrow: 1,
+          }}
         />
         <IconButton
           color="primary"
           onClick={handleSend}
-          sx={{ ml: 1 }}
+          sx={{
+            ml: 1,
+            backgroundColor: 'primary.main',
+            '&:hover': { backgroundColor: 'primary.dark' },
+          }}
           aria-label="send message"
         >
           <SendIcon />
